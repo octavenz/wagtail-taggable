@@ -1,0 +1,41 @@
+.tags-block {
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: .75rem
+}
+
+.tag-item--wrapper {
+  border: 1px solid var(--w-color-grey-150);
+  border-radius: .3125rem;
+  margin: .5rem .5rem .5rem 0;
+  padding: .5rem .25rem .5rem 1rem;
+  width: fit-content
+}
+
+.tag-item--wrapper .w-panel {
+  margin-bottom: 0;
+}
+
+.tag-item {
+  align-items: center;
+  display: flex
+}
+
+.tag-item .action-choose {
+  cursor: pointer
+}
+
+.tag-item .button--icon.text-replace {
+  height: 2.2rem;
+  width: 2.2rem
+}
+
+.tag-item .w-panel__wrapper .w-field__label {
+  display: none
+}
+
+.tag-item .w-panel__wrapper .w-field__wrapper {
+  margin-bottom: 0
+}
+
