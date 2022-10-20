@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wagtail-taggable"
-version = "0.0.2"
+version = "0.0.4"
 description = "Simple tagging for the Wagtail CMS."
 authors = ["Claudia Field <claudia.field@octave.nz>", "Richard Campen <richard.campen@octave.nz>"]
 readme = 'README.md'
