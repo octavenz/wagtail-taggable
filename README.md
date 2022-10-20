@@ -91,6 +91,8 @@ Using the `register_tag` decorator automatically sets up any `ForeignKey` refere
                 TagsPanel('example_tag_relationships', heading='Example Tags'),
             ]
 
+![Screenshot](https://github.com/octavenz/wagtail-taggable/blob/main/tags-interface.png)
+
 ## Query items based on tags
 
 Perform queries based on tags like you would with any other related table
