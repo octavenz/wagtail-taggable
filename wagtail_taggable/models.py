@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
+from wagtail.admin.panels import FieldPanel
 from wagtail.search import index
 from wagtail.search.index import Indexed
 
@@ -12,7 +13,6 @@ class BaseTag(Indexed, models.Model):
     name = models.CharField(
         unique=True,
         max_length=100,
-        help_text=_('Note: tag names are always saved in lower case.')
     )
 
     slug = models.CharField(
@@ -32,4 +32,8 @@ class BaseTag(Indexed, models.Model):
 
     search_fields = [
         index.SearchField('name'),
+    ]
+
+    panels = [
+        FieldPanel('name'),
     ]
