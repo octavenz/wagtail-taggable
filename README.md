@@ -21,7 +21,9 @@ Install with pip
 
 ## Setup your tag models
 
-    @register_tag('Example')  # <-- sets up the admin chooser and urls for using tags
+Using the `register_tag` decorator automatically sets up any `ForeignKey` references to the decorated model to render using a chooser widget specifically for your tag model. It takes care of registering all the form widgets and urls needed to get this interface working.
+
+    @register_tag('Example')
     class ExampleTag(BaseTag):
     
         class Meta:
@@ -63,38 +65,37 @@ Install with pip
 
 1. Define through relationship:
 
-
-    class ExamplePageExampleTagRelationship(models.Model):
+        class ExamplePageExampleTagRelationship(models.Model):
     
-        page = ParentalKey(
-            'app.ExamplePage',
-            on_delete=models.CASCADE,
-            related_name='example_tag_relationships',
-            related_query_name='example_tag_relationship',
-        )
-    
-        example_tag = models.ForeignKey(
-            'app.ExampleTag',
-            on_delete=models.CASCADE,
-            related_name='example_page_relationships',
-            related_query_name='example_page_relationship',
-        )
+            page = ParentalKey(
+                'app.ExamplePage',
+                on_delete=models.CASCADE,
+                related_name='example_tag_relationships',
+                related_query_name='example_tag_relationship',
+            )
+        
+            example_tag = models.ForeignKey(
+                'app.ExampleTag',
+                on_delete=models.CASCADE,
+                related_name='example_page_relationships',
+                related_query_name='example_page_relationship',
+            )
 
 2. Use TagsPanel to render the tags interface in the CMS for the taggable model (in this case a wagtail.Page)
 
+        class ExamplePage(Page):
+    
+            ...
+    
+            content_panels = [
+                TagsPanel('example_tag_relationships', heading='Example Tags'),
+            ]
 
-    class ExamplePage(Page):
+## Query items based on tags
 
-        ...
-
-        content_panels = [
-            TagsPanel('example_tag_relationships', heading='Example Tags'),
-        ]
-
-## Query items based on their tags like you would with any other related table
+Perform queries based on tags like you would with any other related table
 
     tagged_items = (
         ExamplePage.objects
         .filter(example_tag_relationship__example_tag__name='My Cool Tag')
     )
-               
