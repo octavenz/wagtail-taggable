@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "wagtail-taggable"
+version = "0.0.1"
+description = "Simple tagging for the Wagtail CMS."
+authors = ["Claudia Field <claudia.field@octave.nz>", "Richard Campen <richard.campen@octave.nz>"]
+readme = 'README.md'
+homepage = 'https://github.com/octavenz/wagtail-taggable'
+license = "BSD"
+
+[tool.poetry.dependencies]
+wagtail = ">=2.15"
+wagtail-generic-chooser = ">=0.4"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
