@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 from wagtail.search import index
@@ -15,22 +15,21 @@ class BaseTag(Indexed, models.Model):
         help_text=_('Note: tag names are always saved in lower case.')
     )
 
-    def __str__(self):
-        return self.name.title()
+    slug = models.CharField(
+        unique=True,
+        max_length=100,
+    )
 
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
-        self.name = self.name.lower()
+        self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
     search_fields = [
         index.SearchField('name'),
     ]
-
-
-# TODO: deprecate? automate? - RichC
-class TagField(models.ForeignKey):
-    """Custom foreign key field that uses a custom tag chooser in the admin interface."""
-    pass
