@@ -1,0 +1,47 @@
+{% load i18n l10n wagtailadmin_tags %}
+
+{{ self.formset.management_form }}
+
+<div id="id_{{ self.formset.prefix }}-FORMS" class="tags-block">
+    {% if self.formset.non_form_errors %}
+        <div class="error-message">
+            {% for error in self.formset.non_form_errors %}
+                <span>{{ error|escape }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% for child in self.children %}
+        {% include "tags/tag_wrapper.html" %}
+    {% endfor %}
+</div>
+
+
+<script type="text/django-form-template" id="id_{{ self.formset.prefix }}-EMPTY_FORM_TEMPLATE">
+    {% escapescript %}
+        {% include "tags/tag_wrapper.html" with child=self.empty_child %}
+    {% endescapescript %}
+</script>
+
+{# Align with guiding line of the preceding child panel.#}
+<div class="w-mb-4 -w-ml-0.5">
+    <button type="button" class="button button-small button-secondary chooser__choose-button" id="id_{{ self.formset.prefix }}-ADD">
+        {% icon name=icon|default:"plus-inverse" %}{% blocktrans trimmed with label=self.label|lower %}Add{% endblocktrans %}
+    </button>
+</div>
+
+<script>
+    (function() {
+        var panel = InlinePanel({
+            formsetPrefix: "id_{{ self.formset.prefix }}",
+            emptyChildFormPrefix: "{{ self.empty_child.form.prefix }}",
+            canOrder: {% if can_order %}true{% else %}false{% endif %},
+            maxForms: {{ self.formset.max_num|unlocalize }}
+        });
+
+        {% for child in self.children %}
+            panel.initChildControls("{{ child.form.prefix }}");
+        {% endfor %}
+        panel.updateMoveButtonDisabledStates();
+        panel.updateAddButtonState();
+    })();
+</script>

@@ -1,0 +1,12 @@
+<div id="{{ attrs.id }}-chooser" class="chooser {% block chooser_class %}{{ widget.classname }}{% endblock %} {% if is_empty %}blank{% endif %}" {% if choose_modal_url %}data-choose-modal-url="{{ choose_modal_url }}"{% endif %}>
+    <div class="chosen">
+        {% block chosen_state_view %}
+            <span class="title button button-small action-choose">{{ title }}</span>
+        {% endblock %}
+    </div>
+    <div class="unchosen">
+        <button type="button" class="button action-choose button-small button-secondary">{{ widget.choose_one_text }}</button>
+    </div>
+</div>
+
+{{ original_field_html }}
