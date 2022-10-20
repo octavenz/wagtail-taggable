@@ -6,11 +6,11 @@ Simple tag functionality for Wagtail sites wanting curated tags without the comp
 
 Install with pip
 
-    pip install wagtail-favicon
+    pip install wagtail-taggable
     
     or
     
-    poetry add wagtail-favicon
+    poetry add wagtail-taggable
 
 ## Add to Django installed apps
 
