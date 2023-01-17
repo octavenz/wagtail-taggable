@@ -10,8 +10,11 @@ from wagtail_taggable.admin import TagChooser
 _registry = {}
 
 
-def register_tag(label):
+def register_tag(label: str, *, viewset_kwargs: dict = None):
     """Convenience wrapper that generates an admin chooser viewset and admin chooser widget for a tag model."""
+
+    if viewset_kwargs is None:
+        viewset_kwargs = {}
 
     def decorator(klass):
 
@@ -30,9 +33,9 @@ def register_tag(label):
         class _ChooserViewSet(ModelChooserViewSet):
 
             model = klass
-            icon = 'tasks'
+            icon = viewset_kwargs.get('icon', 'tasks')
             page_title = _(f'Choose a {label}')
-            per_page = 10
+            per_page = viewset_kwargs.get('per_page', 10)
 
         @hooks.register('register_admin_viewset')
         def _register_viewset():

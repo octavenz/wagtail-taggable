@@ -15,7 +15,7 @@ class TagsPanel(InlinePanel):
 
         class Media:
             css = {
-                'all': ('wagtail_taggable/css/tag-panel.css',)
+                'all': ('wagtail_taggable/css/tag-panel.css',),
             }
 
 
