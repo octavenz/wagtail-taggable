@@ -1,6 +1,7 @@
-*.pyc
 .idea
-.vscode
-
-dist
-app
+*.pyc
+*.egg-info/
+.tox/
+.coverage
+build/
+dist/
