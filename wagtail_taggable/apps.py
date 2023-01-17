@@ -13,5 +13,7 @@ class WagtailTaggableConfig(AppConfig):
 
         for class_name, values in _registry.items():
             register_form_field_override(
-                ForeignKey, to=values['class'], override={"widget": values['chooser']}
+                ForeignKey, to=values['class'], override={
+                    'widget': values['chooser'],
+                },
             )
