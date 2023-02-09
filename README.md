@@ -2,6 +2,11 @@
 
 Simple tag functionality for Wagtail sites wanting curated tags without the complexity.
 
+## Change Log
+
+- v0.0.10:
+  - Updated InlinePanel invocation to match requirements for Wagtail 4.2 and therefore pin Wagtail 4.2 as the minimum supported version.
+
 ## Installation & Setup
 
 Install with pip
