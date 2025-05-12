@@ -1,6 +1,5 @@
-from generic_chooser.widgets import AdminChooser
-
 from wagtail.admin.panels import InlinePanel
+from wagtail.admin.widgets import BaseChooser
 
 
 class TagsPanel(InlinePanel):
@@ -19,5 +18,5 @@ class TagsPanel(InlinePanel):
             }
 
 
-class TagChooser(AdminChooser):
+class TagChooser(BaseChooser):
     template = 'wagtail_taggable/tag_chooser.html'

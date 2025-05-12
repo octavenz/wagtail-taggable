@@ -1,9 +1,8 @@
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
-from generic_chooser.views import ModelChooserViewSet
-
 from wagtail import hooks
+from wagtail.admin.viewsets.chooser import ChooserViewSet
 
 from wagtail_taggable.admin import TagChooser
 
@@ -30,7 +29,7 @@ def register_tag(label: str, *, viewset_kwargs: dict = None):
             'chooser': _Chooser,
         }
 
-        class _ChooserViewSet(ModelChooserViewSet):
+        class _ChooserViewSet(ChooserViewSet):
 
             model = klass
             icon = viewset_kwargs.get('icon', 'tasks')
